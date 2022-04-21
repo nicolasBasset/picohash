@@ -16,7 +16,9 @@
 #include <assert.h>
 #include <inttypes.h>
 #include <string.h>
-
+#ifdef _WIN32
+/* Assume that Windows is always in little endian */
+#else // _WIN32
 #ifdef __BIG_ENDIAN__
 #define _PICOHASH_BIG_ENDIAN
 #elif defined __LITTLE_ENDIAN__
@@ -31,7 +33,7 @@
 #define _PICOHASH_BIG_ENDIAN
 #endif
 #endif
-
+#endif /* _WIN32*/
 #define PICOHASH_MD5_BLOCK_LENGTH 64
 #define PICOHASH_MD5_DIGEST_LENGTH 16
 
